@@ -10846,3 +10846,19 @@ html {
   background-repeat: no-repeat;
   min-height: 15rem;
 }
+
+#bookTemplate {
+  /*display:grid;*/
+  /*background-color: red;*/
+  vertical-align: top;
+  display: inline-block;
+  text-align: left;
+  margin-left: 120px;
+  /*grid-template-columns:repeat(3, 1fr);*/
+  /*grid-column-gap: 2px;*/
+  /*align-items: end*/
+}
+
+.caption{
+  display: block;
+}
