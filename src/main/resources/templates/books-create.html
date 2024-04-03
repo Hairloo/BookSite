@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Create</title>
+</head>
+<body>
+<main class="flex-shrink-0">
+    <section layout:fragment="body" class="py-5">
+        <div class="container">
+            <form role="form" method="post" th:action="@{/books/new}" th:object="${book}">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationDefault01">Book name</label>
+                        <input type="text" class="form-control" th:field="*{bookName}" id="validationDefault01" placeholder="Book name" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationDefault02">Genre</label>
+                        <input type="text" class="form-control" th:field="*{genre}" id="validationDefault02" placeholder="Book Genre" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationDefaultUsername">Image URL</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend2">URL</span>
+                            </div>
+                            <input type="text" class="form-control" th:field="*{bookCoverURL}" id="validationDefaultUsername" placeholder="Image URL" aria-describedby="inputGroupPrepend2" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault03">Publication year</label>
+                        <input type="text" class="form-control" th:field="*{publicationYear}" id="validationDefault03" placeholder="Publication year" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationDefault04">Publisher</label>
+                        <input type="text" class="form-control" th:field="*{publisher}" id="validationDefault04" placeholder="Publisher" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault03">Number of pages</label>
+                        <input type="text" class="form-control" th:field="*{numberOfPages}" id="validationDefault05" placeholder="Number of pages" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationDefault05">ISBN</label>
+                        <input type="text" class="form-control" th:field="*{isbn}" id="validationDefault06" placeholder="ISBN" required>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit form</button>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>
+
+

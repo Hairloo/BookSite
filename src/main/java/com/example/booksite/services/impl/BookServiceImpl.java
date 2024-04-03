@@ -24,6 +24,11 @@ public class BookServiceImpl implements BookService {
         return books.stream().map((this::mapToBookDTO)).collect(Collectors.toList());
     }
 
+    @Override
+    public void saveBook(Book book) {
+        bookRepository.save(book);
+    }
+
     private BookDTO mapToBookDTO(Book book){
         BookDTO bookDTO = BookDTO.builder()
                 .bookName(book.getBookName())
