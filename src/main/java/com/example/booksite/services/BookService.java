@@ -8,5 +8,8 @@ import java.util.List;
 public interface BookService {
 
     public List<BookDTO> findAllBooks();
-    public void saveBook(Book book);
+    public void saveBook(BookDTO bookDTO);
+    public void updateBook(BookDTO bookDTO);
+
+    public BookDTO findBookById(long bookId);
 }

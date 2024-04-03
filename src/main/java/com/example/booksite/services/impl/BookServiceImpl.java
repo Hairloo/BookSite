@@ -1,6 +1,7 @@
 package com.example.booksite.services.impl;
 
 import com.example.booksite.dto.BookDTO;
+import com.example.booksite.mapper.BookMapper;
 import com.example.booksite.models.Book;
 import com.example.booksite.repositories.BookRepository;
 import com.example.booksite.services.BookService;
@@ -21,26 +22,27 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookDTO> findAllBooks() {
         List<Book> books = bookRepository.findAll();
-        return books.stream().map((this::mapToBookDTO)).collect(Collectors.toList());
+        return books.stream().map((BookMapper::mapToBookDTO)).collect(Collectors.toList());
     }
 
     @Override
-    public void saveBook(Book book) {
+    public void saveBook(BookDTO bookDTO) {
+        Book book = BookMapper.mapToBookAdd(bookDTO);
         bookRepository.save(book);
     }
 
-    private BookDTO mapToBookDTO(Book book){
-        BookDTO bookDTO = BookDTO.builder()
-                .bookName(book.getBookName())
-                .bookCoverURL(book.getBookCoverURL())
-                .genre(book.getGenre())
-                .publisher(book.getPublisher())
-                .publicationYear(book.getPublicationYear())
-                .isbn(book.getIsbn())
-                .numberOfDislikes(book.getNumberOfDislikes())
-                .numberOfLikes(book.getNumberOfLikes())
-                .numberOfPages(book.getNumberOfPages())
-                .build();
-        return bookDTO;
+
+    @Override
+    public BookDTO findBookById(long bookId) {
+        return BookMapper.mapToBookDTO(bookRepository.findById(bookId).get());
     }
+
+    @Override
+    public void updateBook(BookDTO bookDTO) {
+        Book book = BookMapper.mapToBookUpdate(bookDTO);
+        bookRepository.save(book);
+    }
+
+
+
 }
