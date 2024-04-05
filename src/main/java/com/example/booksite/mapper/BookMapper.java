@@ -21,6 +21,20 @@ public class BookMapper {
         return bookDTO;
     }
 
+    public static Book mapToBook(BookDTO bookDTO){
+        Book book = Book.builder()
+                .bookName(bookDTO.getBookName())
+                .bookCoverURL(bookDTO.getBookCoverURL())
+                .genre(bookDTO.getGenre())
+                .publisher(bookDTO.getPublisher())
+                .publicationYear(bookDTO.getPublicationYear())
+                .isbn(bookDTO.getIsbn())
+                .numberOfPages(bookDTO.getNumberOfPages())
+                .createdOn(bookDTO.getCreatedOn())
+                .build();
+        return book;
+    }
+
 
     public static Book mapToBookUpdate(BookDTO bookDTO){
         Book book = Book.builder()

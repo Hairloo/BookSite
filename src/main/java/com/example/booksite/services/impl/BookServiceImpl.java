@@ -38,8 +38,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void updateBook(BookDTO bookDTO) {
+    public void updateBook(long id, BookDTO bookDTO) {
         Book book = BookMapper.mapToBookUpdate(bookDTO);
+
         bookRepository.save(book);
     }
 

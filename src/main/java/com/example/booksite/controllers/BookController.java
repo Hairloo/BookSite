@@ -3,9 +3,11 @@ package com.example.booksite.controllers;
 import com.example.booksite.dto.BookDTO;
 import com.example.booksite.models.Book;
 import com.example.booksite.services.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +40,11 @@ public class BookController {
     }
 
     @PostMapping("/books/new")
-    public String saveBook(@ModelAttribute("book") BookDTO bookDTO){
+    public String saveBook(@Valid @ModelAttribute("book") BookDTO bookDTO, BindingResult result, Model model){
+        if(result.hasErrors()){
+            model.addAttribute("book", bookDTO);
+            return "books-create";
+        }
         bookService.saveBook(bookDTO);
         return "redirect:/books";
     }
@@ -51,8 +57,12 @@ public class BookController {
     }
 
     @PostMapping("/books/{id}/edit")
-    public String updateBook(@PathVariable("id") Long id, @ModelAttribute("book") BookDTO bookDTO){
-        bookService.updateBook(bookDTO);
+    public String updateBook(@PathVariable("id") Long id, @Valid @ModelAttribute("book") BookDTO bookDTO, BindingResult result, Model model){
+        if (result.hasErrors()){
+            model.addAttribute("book", bookDTO);
+            return "books-edit";
+        }
+        bookService.updateBook(id, bookDTO);
         return "redirect:/books";
     }
 }

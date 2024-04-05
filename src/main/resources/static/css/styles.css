@@ -10859,6 +10859,13 @@ html {
   /*align-items: end*/
 }
 
+#editButton {
+  vertical-align: top;
+  display: inline-block;
+  text-align: left;
+  margin-left: 120px;
+}
+
 .caption{
   display: block;
 }

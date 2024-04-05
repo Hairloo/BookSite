@@ -9,7 +9,7 @@ public interface BookService {
 
     public List<BookDTO> findAllBooks();
     public void saveBook(BookDTO bookDTO);
-    public void updateBook(BookDTO bookDTO);
+    public void updateBook(long id, BookDTO bookDTO);
 
     public BookDTO findBookById(long bookId);
 }
