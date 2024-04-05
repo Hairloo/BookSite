@@ -38,6 +38,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public void delete(Long id) {
+        bookRepository.deleteById(id);
+    }
+
+    @Override
     public void updateBook(long id, BookDTO bookDTO) {
         Book book = BookMapper.mapToBookUpdate(bookDTO);
 
